@@ -3,9 +3,9 @@
 // 1) Dados (configuração)
 //-----------------------------------------
 const slides = [
-  { title: "MOUNT EVEREST", description: "Nepal, 8,848.86m / 29,032ft.", image: "/assets/images/Everest4.avif" },
-  { title: "K2", description: "Pakistan, 8,611m / 28,251ft.", image: "/assets/images/K2.avif" },
-  { title: "LHOTSE", description: "Nepal, 8,516m / 27,940ft.", image: "/assets/images/Lhotse.avif" },
+  { title: "MOUNT EVEREST", description: "Nepal, 8,848.86m / 29,032ft.", image: "assets/images/Everest4.avif" },
+  { title: "K2", description: "Pakistan, 8,611m / 28,251ft.", image: "assets/images/K2.avif" },
+  { title: "LHOTSE", description: "Nepal, 8,516m / 27,940ft.", image: "assets/images/Lhotse.avif" },
   { title: "MOUNT FUJI", description: "Japan, 3,776m / 12,389ft.", image: "assets/images/Fuji.avif" },
   { title: "CHAMONIX", description: "France, 1,035m / 3,396ft.", image: "assets/images/Chamonix.avif" }
 ]
