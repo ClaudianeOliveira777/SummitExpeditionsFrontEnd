@@ -1,0 +1,94 @@
+
+$container-desktop: 1280px; //Notebooks até monitores grandes
+$container-tablet: 768px;  //Tablets e celulares grandes
+$container-mobile: 360px; //Celulares pequenos
+
+
+//Mixin of media-queries
+@mixin responsive($device){
+    @if $device == desktop{
+
+        @media screen and (min-width: $container-desktop) {
+          @content;  
+        }
+    }
+
+    @else if $device == tablet {
+         @media screen and (min-width: $container-tablet) and (max-width: #{$container-desktop - 1}){
+            @content;
+        }
+    }
+
+    @else if $device == mobile {
+        @media screen and (min-width: $container-mobile) and (max-width: #{$container-tablet - 1}){
+            @content;
+        }
+    }
+}
+
+
+.container {
+  width: 100%;  
+  max-width: $container-desktop; 
+  margin: 0 auto;
+  padding: 90px 16px;
+
+  @include responsive(tablet) {
+    max-width: $container-tablet; // 768px
+    padding: 0 12px;
+  }
+
+  @include responsive(mobile) {
+    max-width: $container-mobile; // 360px
+    padding: 0 8px;
+  }
+}
+
+
+$container-desktop: 1280px; //Notebooks até monitores grandes
+$container-tablet: 768px;  //Tablets e celulares grandes
+$container-mobile: 360px; //Celulares pequenos
+
+
+//Mixin of media-queries
+@mixin responsive($device){
+    @if $device == desktop{
+
+        @media screen and (min-width: $container-desktop) {
+          @content;  
+        }
+    }
+
+    @else if $device == tablet {
+         @media screen and (min-width: $container-tablet) and (max-width: #{$container-desktop - 1}){
+            @content;
+        }
+    }
+
+    @else if $device == mobile {
+        @media screen and (min-width: $container-mobile) and (max-width: #{$container-tablet - 1}){
+            @content;
+        }
+    }
+}
+
+
+.container {
+  width: 100%;  
+  max-width: $container-desktop; 
+  margin: 0 auto;
+  padding:  16px;
+  
+
+  @include responsive(tablet) {
+    max-width: $container-tablet; // 768px
+    padding: 0 12px;
+  }
+
+  @include responsive(mobile) {
+    max-width: $container-mobile; // 360px
+    padding: 0 8px;
+  }
+}
+
+

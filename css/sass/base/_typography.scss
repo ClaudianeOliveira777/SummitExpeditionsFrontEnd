@@ -1,0 +1,83 @@
+
+@use 'mixin-layout' as mix;
+@use 'colors' as colors;
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+
+
+@mixin typeface-1($size, $device){
+    @if $size == h1 and $device == desktop{
+        font-family: 'Anton', sans-serif;
+        font-size: 95px;
+        font-weight: 500;
+        color: white;
+    } @else if $size == h1 and $device == mobile {
+        font-size: 88px;
+        
+        
+    }
+
+    @else if $size == h2 and $device == desktop{
+        font-family: 'Inter', sans-serif;
+        font-size: 37px;
+        text-transform: uppercase;
+        font-weight: 990;
+        
+        
+    } @else if $size == h2 and $device == mobile{
+        font-size: 27px;
+        }
+
+    
+}
+
+@mixin paragraph ($size: p1, $device){
+    @if $size == p1 and $device == desktop{
+        font-family: 'Montserrat', sans-serif;
+        
+        font-size: 18px;
+        line-height: 28px;
+        font-weight: 400;
+    } @else if $size == p1 and $device == mobile{
+       font-size: 16px;
+     
+    }
+}
+
+h1{
+    @include typeface-1(h1, desktop);
+    @include mix.responsive(mobile){
+       @include typeface-1(h1, mobile);
+    }
+}
+
+h2{
+    color: colors.$dark-blue;
+   @include typeface-1(h2, desktop);
+   @include mix.responsive(mobile){
+    @include typeface-1(h2, mobile);
+   }
+}
+
+
+
+p{
+    color: colors.$gray-1;
+    @include paragraph(p1, desktop);
+    @include mix.responsive(mobile){
+        @include paragraph(p1, mobile)
+    }
+    
+    
+}
+
+a{
+   font-family: 'Inter', sans-serif;
+   letter-spacing: 2px;
+   text-decoration: none;
+}

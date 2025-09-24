@@ -1,0 +1,139 @@
+
+@use '../base/typography' as typography;
+@use '../base/mixin-layout' as mix;
+@use '../base/colors' as colors;
+
+
+.about {
+    text-align: center;
+    
+    margin-top: 47px;
+}
+
+.about h2 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.about p {
+    width: 900px;
+    margin: 0 auto;
+    
+    
+    
+    
+    letter-spacing: 0.025em;
+    
+ 
+    margin-bottom: 25px;
+
+    @include mix.responsive(mobile){
+        margin: 0 auto;
+        
+        
+      
+        padding: 20px;
+        
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+/*Highlights*/
+.highlights-grid{
+    
+    border: 5px solid green;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+  
+     align-items: stretch; // força todos os cards a terem a mesma altura
+
+    @include mix.responsive(mobile){
+        display: flex;
+        flex-direction: column;
+    } 
+    
+ 
+  
+}
+
+.highlights-card{
+    border: 1px solid red;
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    height: 100%; // ocupa toda altura do grid
+
+}
+
+.highlights-icon{
+  width: 60px;
+  height: 60px;
+  border: 1px solid bisque;
+}
+
+.highlights-title{
+    
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 19px;
+    margin-bottom: 10px;
+
+    letter-spacing: 2px;
+}
+
+.highlights-description {
+  flex: 1; // ocupa o espaço disponível
+  display: flex;
+  align-items: center; // centraliza verticalmente o texto dentro da área
+}
+
+
+.highlights-description p{
+    font-size: 15px;
+    color: colors.$white-normal;
+   
+}
+
+.highlights-link a{
+   
+   
+    display: inline-block;
+    color: colors.$white-light;
+    margin-top: 20px;
+    font-weight: 500;
+
+     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+     transition: all 0.3s ease;
+
+     &:hover{
+        color: colors.$adventure-orange;
+        border-bottom: 1px solid white;
+        transition: all 0.3s ease;
+     }
+
+}
+
+.individualization{
+    background: #ff9500;
+}
+
+.support{
+    background: #1976d2;
+}
+
+.safety{
+    background: #ffbf37;
+}
+
+.sustainability{
+    background: #3bafda;
+}

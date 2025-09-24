@@ -1,0 +1,25 @@
+
+
+@use 'base/spacing';
+@use 'base/typography';
+@use 'base/mixin-layout';
+@use 'base/colors';
+@use 'sections/hero-slides';
+@use 'sections/hearder.scss';
+@use 'sections/home-sections';
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+
+body{
+    background:#f9f4f0;
+    /*overflow-x: hidden;*/
+    
+}
+

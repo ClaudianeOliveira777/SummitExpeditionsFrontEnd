@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cesta de Frutas com Throttle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8e1;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #d35400;
+    }
+
+    .frutas {
+      margin: 20px 0;
+    }
+
+    button {
+      font-size: 2rem;
+      margin: 10px;
+      padding: 15px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      background: #ffe0b2;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background: #ffcc80;
+    }
+
+    .cesta {
+      margin-top: 40px;
+      font-size: 1.5rem;
+      color: #2c3e50;
+      padding: 20px;
+      border: 2px dashed #d35400;
+      border-radius: 15px;
+      min-height: 80px;
+      background: #fff3e0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🥭 Cesta de Frutas (com Throttle) 🍎</h1>
+  <p>Clique nas frutas! Só dá pra colocar uma nova a cada <b>2 segundos</b>.</p>
+
+  <div class="frutas">
+    <button onclick="adicionarFruta('🍎')">🍎</button>
+    <button onclick="adicionarFruta('🍌')">🍌</button>
+    <button onclick="adicionarFruta('🍇')">🍇</button>
+    <button onclick="adicionarFruta('🍓')">🍓</button>
+    <button onclick="adicionarFruta('🥝')">🥝</button>
+  </div>
+
+  <div class="cesta" id="cesta">Cesta vazia...</div>
+
+  <script>
+    // Array para armazenar frutas na cesta
+    const cestaArmazenada = [];
+
+    // --- throttle versão frutas ---
+    function cestaDeFrutas(frutaFunc, espera) {
+      let ultimaColheita = 0;
+
+      return function(...frutas) {
+        const agora = Date.now();
+        if (agora - ultimaColheita >= espera) {
+          ultimaColheita = agora;
+          frutaFunc.apply(this, frutas);
+        } else {
+          console.log("⏳ Ainda não deu tempo para pegar mais frutas!");
+        }
+      };
+    }
+
+    // Função que adiciona frutas na cesta
+    function mostrarNaCesta(...frutas) {
+      cestaArmazenada.push(...frutas); // adiciona novas frutas no array
+      const cesta = document.getElementById("cesta");
+      cesta.textContent = "Cesta tem: " + cestaArmazenada.join(" ");
+    }
+
+    // Cria a versão com throttle (2 segundos = 2000ms)
+    const adicionarFruta = cestaDeFrutas(mostrarNaCesta, 2000);
+  </script>
+</body>
+</html>

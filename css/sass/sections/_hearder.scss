@@ -1,0 +1,186 @@
+
+@use '../base/colors' as colors;
+@use '../base/typography' as typography;
+@use '../base/mixin-layout' as mixin;
+
+.transparent-header{
+    border: 1px solid green;
+    
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+
+
+    width: 100%;
+    z-index: 10;
+}
+
+.nav-desktop  a {
+    
+  
+   font-size: 18px;
+   font-weight: 500;
+   color: colors.$white-light;
+   margin-right: 20px;
+   padding: 10px;
+   text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+
+@include mixin.responsive(mobile){
+    display: none;
+}   
+}
+
+.nav-desktop{
+  position: relative;
+}
+
+
+.submenuDesktop{
+  position: absolute;
+  background-color: aquamarine;
+  
+  padding-bottom: 15px;
+  display: none;
+  
+
+  li{
+    list-style: none;
+    padding-top: 20px;
+    
+  }
+}
+
+.submenuDesktop.open{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.logo{
+    
+    width: 50px;
+    height: 50px;
+
+    // Mobile: centraliza forçadamente
+    @include mixin.responsive(mobile){
+        margin: 0 auto;
+    }
+
+    /* Mobile: centraliza forçadamente
+  @include mixin.responsive(mobile) {
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  } */
+    
+}
+
+
+/* Botão Hamburguer */
+.hamburguer{
+
+   display: none; 
+
+
+    @include mixin.responsive(mobile) {
+    display: flex;
+  flex-direction: column;
+  gap: 5px;
+  left: 20px;
+  position: absolute;
+  cursor: pointer;
+  z-index: 1001;
+  top: 20px;
+  }
+
+ 
+  
+  
+ 
+}
+
+.hamburguer span{
+
+  height: 3px;
+  width: 28px;
+  border-radius: 2px;
+  background: white;
+
+  transition: all 0.3s ease; /*animation*/
+
+ @include mixin.responsive(desktop) {
+    display: none; 
+  }
+  
+
+}
+
+/* Animação hamburguer */
+.hamburguer.open span:nth-child(1){
+  transform: rotate(50deg) translate(5px, 5px);
+}
+
+.hamburguer.open span:nth-child(2){
+  opacity: 0;
+}
+
+.hamburguer.open span:nth-child(3){
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+
+
+/* Menu mobile*/
+.nav-mobile{
+  display: none;
+ position: absolute;
+
+background: rgba(0, 0, 0, 0.95);
+ width: 50%;
+ top: 0;
+ left: 0;
+ padding: 50px 20px;
+ 
+& a{
+  color: colors.$white-light;
+}
+
+}
+
+.nav-mobile.open {
+  display: flex;
+  border: 1px solid red;
+ 
+  
+}
+
+/*.nav-mobile a{
+  color: colors.$white-light;
+ 
+} */
+
+.submenu{
+  display: none;
+  padding: 7px;
+
+  & li {
+       padding: 5px;
+  }
+
+
+
+}
+
+.submenu.open{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+
