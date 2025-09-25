@@ -1,5 +1,6 @@
 
 @use '../base/colors' as colors;
+@use '../base/mixin-layout' as mix;
 
 /* ===============================
           HERO SLIDER
@@ -16,6 +17,8 @@
       justify-content: center;
       color: white;
       text-shadow: 1px 1px 3px #000;
+
+      
       
 }
 
@@ -24,6 +27,11 @@
  width: 100%;  /* melhor que 100vw */
   height: 85vh;
   /*overflow: hidden; talvez com a tag nav*/
+
+  @include mix.responsive(mobile){
+       
+        height: 55vh;
+      }
 }
 
 .slide{
@@ -42,7 +50,7 @@
 
 
 .slide-caption{
-  border: 1px solid red;
+ 
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.8s ease;  
@@ -60,7 +68,7 @@
 .arrow-btn{
   position: absolute;
   background: none;
-  border: 1px solid red;
+  border: none;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
@@ -69,12 +77,20 @@
   height: 40px;
 
    img{
+    
+    @include mix.responsive(mobile){
+      width: 35px;
+      height: 35px;
+    }
+    
     transition: transform 0.2s;
 
   &:hover{ 
     transform: scale(1.2);
   }
    }
+
+  
 }
 
 .left {

@@ -17,7 +17,7 @@
         font-weight: 500;
         color: white;
     } @else if $size == h1 and $device == mobile {
-        font-size: 88px;
+        font-size: 70px; /*era 88px*/
         
         
     }

@@ -48,7 +48,7 @@ h1 {
 }
 @media screen and (min-width: 360px) and (max-width: 767px) {
   h1 {
-    font-size: 88px;
+    font-size: 70px; /*era 88px*/
   }
 }
 
@@ -104,6 +104,11 @@ a {
   height: 85vh;
   /*overflow: hidden; talvez com a tag nav*/
 }
+@media screen and (min-width: 360px) and (max-width: 767px) {
+  .hero-slider {
+    height: 55vh;
+  }
+}
 
 .slide {
   background-position: center; /* aqui também */
@@ -120,7 +125,6 @@ a {
 }
 
 .slide-caption {
-  border: 1px solid red;
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.8s ease;
@@ -138,13 +142,19 @@ a {
 .arrow-btn {
   position: absolute;
   background: none;
-  border: 1px solid red;
+  border: none;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
   z-index: 10;
   width: 40px;
   height: 40px;
+}
+@media screen and (min-width: 360px) and (max-width: 767px) {
+  .arrow-btn img {
+    width: 35px;
+    height: 35px;
+  }
 }
 .arrow-btn img {
   transition: transform 0.2s;
@@ -173,7 +183,6 @@ a {
 }
 
 .transparent-header {
-  border: 1px solid green;
   position: absolute;
   display: flex;
   justify-content: space-between;
@@ -220,17 +229,19 @@ a {
 .logo {
   width: 50px;
   height: 50px;
+}
+@media screen and (min-width: 360px) and (max-width: 767px) {
+  .logo {
+    margin: 0 auto;
+  }
+}
+.logo {
   /* Mobile: centraliza forçadamente
   @include mixin.responsive(mobile) {
     margin: 0 auto;
     position: relative;
     z-index: 1;
   } */
-}
-@media screen and (min-width: 360px) and (max-width: 767px) {
-  .logo {
-    margin: 0 auto;
-  }
 }
 
 /* Botão Hamburguer */
@@ -428,4 +439,6 @@ a {
 body {
   background: #f9f4f0;
   /*overflow-x: hidden;*/
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
