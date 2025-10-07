@@ -1,4 +1,6 @@
 
+$assets-path: '/SummitExpeditionsFrontEnd/assets';
+
 @use '../base/typography' as typography;
 @use '../base/mixin-layout' as mix;
 @use '../base/colors' as colors;
@@ -155,7 +157,7 @@
 
 .stats-mountain{
     position: absolute;
-    background-image: url('/assets/images/Mountain.png');
+    background-image: url('../../../assets/images/Mountain.png');
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
@@ -164,7 +166,7 @@
 
   .stats-clouds{
     position: absolute;
-    background-image: url('/assets/images/clouds.png');
+    background-image: url('../../../assets/images/clouds.png');
     width: 100%;
     height: 120%;
     background-size: cover;

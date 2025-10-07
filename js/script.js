@@ -194,7 +194,7 @@ function initStats(){
       const onScroll = () => parallaxEffect(container, clouds);
       window.addEventListener('scroll', onScroll, {passive: true});
       window.addEventListener('resize', () => parallaxEffect(container, clouds));
-      parallaxEffect(container, clouds); //parallaxEffect(container, clouds);
+      parallaxEffect(container, clouds); 
     } else {
       window.removeEventListener('scroll', onScroll);
     }
