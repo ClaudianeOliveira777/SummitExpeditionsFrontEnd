@@ -235,14 +235,15 @@ a {
     margin: 0 auto;
   }
 }
-.logo {
+
+/*.logo {
   /* Mobile: centraliza forçadamente
   @include mixin.responsive(mobile) {
     margin: 0 auto;
     position: relative;
     z-index: 1;
-  } */
-}
+  } 
+}*/
 
 /* Botão Hamburguer */
 .hamburguer {
