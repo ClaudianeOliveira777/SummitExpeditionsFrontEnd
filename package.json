@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-     "sass": "sass --watch css/sass/style.scss:css/style.css --no-error-css --style=expanded --source-map",
-     "sass:build": "sass css/sass/style.scss:css/style.css --no-error-css --style=compressed --no-source-map"
+      "sass": "sass --watch css/sass/style.scss css/style.css --style=expanded --source-map",
+  "sass:build": "sass css/sass/style.scss css/style.css --style=compressed --no-source-map"
   },
   "keywords": [],
   "author": "",

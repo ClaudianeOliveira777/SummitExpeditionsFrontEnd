@@ -1,5 +1,4 @@
 
-$assets-path: '/SummitExpeditionsFrontEnd/assets';
 
 @use '../base/typography' as typography;
 @use '../base/mixin-layout' as mix;
@@ -157,6 +156,7 @@ $assets-path: '/SummitExpeditionsFrontEnd/assets';
 
 .stats-mountain{
     position: absolute;
+    
     background-image: url('../../../assets/images/Mountain.png');
     background-size: cover;
     background-repeat: no-repeat;
