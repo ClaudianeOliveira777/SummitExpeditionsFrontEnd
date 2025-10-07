@@ -1,4 +1,7 @@
 
+import { CountUp } from 'https://cdn.jsdelivr.net/npm/countup.js@2.0.7/dist/countUp.min.js';
+
+
 //-----------------------------------------
 // 1) Dados (configuração)
 //-----------------------------------------
@@ -163,3 +166,73 @@ subMenuExpeditions.addEventListener('click', (e)=>{
   subMenu.classList.toggle('open');
 });
 
+
+
+//Stats - Parallax Effect
+const container = document.getElementById('statsContainer');
+const clouds = document.getElementById('statsClouds');
+const statsData = document.querySelector('.stats-data');
+let onScroll;
+
+// ===============================
+// 2) Init Observer (parallax + counters)
+// ===============================
+function initStats(){
+ if(!container || !clouds || !statsData) return;
+
+ const observerViewport = new IntersectionObserver((elements) => {
+  elements.forEach(element =>{
+    if(element.isIntersecting){
+      
+      //Ativa counters
+      statsData.querySelectorAll('.counter').forEach(counter => {
+       
+        animateCounter(counter, +counter.dataset.target);
+      });
+
+      //Ativa parallax
+      const onScroll = () => parallaxEffect(container, clouds);
+      window.addEventListener('scroll', onScroll, {passive: true});
+      window.addEventListener('resize', () => parallaxEffect(container, clouds));
+      parallaxEffect(); //parallaxEffect(container, clouds);
+    } else {
+      window.removeEventListener('scroll', onScroll);
+    }
+  });
+ }, {threshold: 0.1});
+
+ observerViewport.observe(container);
+
+}
+
+
+//Parallax Effect
+function parallaxEffect(container, clouds){
+  const rect = container.getBoundingClientRect();
+  const parallaxSpeed = 0.4;
+  const yPos = -(rect.top * parallaxSpeed);
+  clouds.style.transform = `translateY(${yPos}px)`;
+}
+
+// Counter Animation
+function animateCounter (counter, target, duration = 2500){
+
+const countUp = new CountUp(counter, target, {
+    startVal: +counter.textContent,
+    duration: duration / 1000, // Converte ms para segundos
+    separator: '',
+   
+    useGrouping: false,
+  });
+  
+  if (!countUp.error) {
+    countUp.start();
+  } else {
+    console.error(countUp.error);
+    counter.textContent = target; // Fallback
+  }
+
+}
+
+
+document.addEventListener("DOMContentLoaded", initStats);

@@ -430,6 +430,65 @@ a {
   background: #3bafda;
 }
 
+/*Stats*/
+.stats-Container {
+  position: relative;
+  min-height: 99vh;
+  overflow: hidden;
+  background: #f9f4f0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* joga tudo pra direita */
+}
+
+.stats-mountain {
+  position: absolute;
+  background-image: url("/assets/images/Mountain.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+.stats-clouds {
+  position: absolute;
+  background-image: url("/assets/images/clouds.png");
+  width: 100%;
+  height: 120%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  will-change: transform;
+  transition: transform 0.1s ease-in;
+  top: 0;
+}
+
+.stats-data {
+  padding: 64px 32px;
+  z-index: 3;
+  border: 1px solid green;
+  margin-right: 50px;
+}
+
+.counter {
+  font-size: 64px;
+  color: #5c75d6;
+  display: block;
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.counter::before {
+  content: "+";
+  margin-right: 2px;
+}
+
+.counter-desc {
+  font-size: 30px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  color: #252626;
+}
+
 * {
   padding: 0;
   margin: 0;
