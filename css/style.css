@@ -2,6 +2,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+.mt-8 {
+  margin-top: 8px;
+}
+
+.mt-12 {
+  margin-top: 12px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+.pt-8 {
+  padding-top: 8px;
+}
+
+.pt-12 {
+  padding-top: 12px;
+}
+
+.pt-16 {
+  padding-top: 16px;
+}
+
+.pb-16 {
+  padding-bottom: 16px;
+}
+
+.pb-18 {
+  padding-bottom: 18px;
+}
+
+.pb-24 {
+  padding-bottom: 24px;
+}
+
 .container {
   width: 100%;
   max-width: 1280px;
@@ -477,7 +513,7 @@ a {
 }
 @media screen and (min-width: 360px) and (max-width: 767px) {
   .counter {
-    font-size: 40px;
+    font-size: 50px;
   }
 }
 .counter::before {
@@ -500,11 +536,6 @@ a {
 .journeys {
   text-align: center;
   margin-top: 50px;
-}
-@media screen and (min-width: 360px) and (max-width: 767px) {
-  .journeys {
-    margin-top: 50px;
-  }
 }
 
 .journey-grid {
@@ -573,6 +604,37 @@ a {
 
 .journey-card:hover {
   transform: translateY(-5px);
+}
+
+.container-btn {
+  text-align: center;
+}
+
+.btn-custom {
+  background: #2c3e50;
+  color: white;
+  width: 250px;
+  height: 57px;
+  font-size: 20px;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-style: italic;
+  margin-top: 20px;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: all 0.3s ease;
+  border: none;
+}
+.btn-custom:hover {
+  background: #34495e;
+  transform: translateX(5px);
+}
+
+.custom-tours {
+  margin-top: 80px;
+  text-align: center;
 }
 
 * {

@@ -1,0 +1,41 @@
+$gap-8: 8px;
+$gap-12: 12px;
+$gap-16: 16px;
+$gap-18: 18px;
+$gap-24: 24px;
+
+.mt-8{
+    margin-top: $gap-8;
+}
+
+.mt-12{
+    margin-top: $gap-12;
+}
+
+.mt-16{
+    margin-top: $gap-16;
+}
+
+.pt-8{
+    padding-top: $gap-8;
+}
+
+.pt-12{
+    padding-top: $gap-12;
+}
+
+.pt-16{
+    padding-top: $gap-16;
+}
+
+.pb-16{
+    padding-bottom: $gap-16;
+}
+
+.pb-18{
+    padding-bottom: $gap-18;
+}
+
+.pb-24{
+    padding-bottom: $gap-24;
+}

@@ -5,10 +5,6 @@
 .journeys{
     text-align: center;
     margin-top: 50px;
-
-    @include mix.responsive(mobile){
-        margin-top: 50px;
-    }
 }
 
 .journey-grid{
@@ -18,9 +14,7 @@
     margin-top: 32px;
 
     @include mix.responsive(mobile){
-        grid-template-columns: 1fr;
-   
-        
+        grid-template-columns: 1fr;  
     }
 }
 
@@ -49,8 +43,6 @@
     left: 0;
     opacity: 0;
     transition: opacity 0.3s ease;
-   
- 
 }
 
 .journey-card:hover::after{
@@ -74,14 +66,48 @@
     font-size: 30px;
     font-weight: 700;
     letter-spacing: 5px;
-    font-family: 'Anton', sans-serif;;
+    font-family: 'Anton', sans-serif;
     text-transform: uppercase;
     top: 50%;
     left: 50%;
+
     transform: translate(-50%, -50%);
    
 }
 
 .journey-card:hover{
     transform: translateY(-5px);
+}
+
+.container-btn{
+    text-align: center;
+}
+
+.btn-custom{
+    background: #2c3e50;
+    color: white;
+    width: 250px; 
+    height: 57px; 
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-style: italic;
+    margin-top: 20px;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.3s ease;
+    border: none;
+
+      &:hover{
+        background: #34495e;
+        transform: translateX(5px);
+      }
+}
+
+
+.custom-tours{
+    margin-top: 80px;
+    text-align: center;
 }
