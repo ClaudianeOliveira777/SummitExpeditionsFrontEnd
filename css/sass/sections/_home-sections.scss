@@ -150,8 +150,13 @@
  
     display: flex;
     align-items: center; /* alinha o item na vertical */
-    justify-content: flex-end;    
-   
+    justify-content: flex-end;   
+
+     @include mix.responsive(mobile){
+       min-height: 60vh;  // ✅ Altura reduzida
+        max-height: 60vh;  // ✅ Limita
+    }
+
 }
 
 .stats-mountain{
@@ -162,6 +167,11 @@
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
+
+    @include mix.responsive(mobile){
+    background-position: center;  // ✅ Centraliza a imagem
+    background-size: contain;  // ✅ Mostra a montanha inteira
+}
 }
 
   .stats-clouds{
@@ -174,14 +184,22 @@
     will-change: transform;
     transition: transform 0.1s ease-in;
     top: 0;
+
+    @include mix.responsive(mobile){
+        top: 0;
+        bottom: 0;
+       
+    }
 }
 
   .stats-data {
    padding: 64px 32px;
    z-index: 3;
 
-   border: 1px solid green;
+
    margin-right: 50px;
+
+   
   }
 
 
@@ -193,6 +211,9 @@
     font-family: 'Montserrat', sans-serif;
     font-variant-numeric: tabular-nums;  /*renders numeric characters with a uniform width*/
    
+    @include mix.responsive(mobile){
+        font-size: 40px;
+    }
     
 
     &::before{
@@ -207,6 +228,10 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     color: colors.$gray-1;
+
+    @include mix.responsive(mobile){
+        font-size: 20px;
+    }
   }
 
   

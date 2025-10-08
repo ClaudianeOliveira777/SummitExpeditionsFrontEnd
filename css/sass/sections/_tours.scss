@@ -34,7 +34,7 @@
     transition: transform 0.3s ease;
     
    @include mix.responsive(mobile){
-     width: 400px;    
+     width: 100%;    
     }
     
 }
