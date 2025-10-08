@@ -437,8 +437,8 @@ a {
   overflow: hidden;
   background: #f9f4f0;
   display: flex;
-  align-items: center;
-  justify-content: flex-end; /* joga tudo pra direita */
+  align-items: center; /* alinha o item na vertical */
+  justify-content: flex-end;
 }
 
 .stats-mountain {
@@ -475,11 +475,11 @@ a {
   display: block;
   font-weight: 800;
   font-family: "Montserrat", sans-serif;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: tabular-nums; /*renders numeric characters with a uniform width*/
 }
 .counter::before {
   content: "+";
-  margin-right: 2px;
+  margin-right: 5px;
 }
 
 .counter-desc {
@@ -487,6 +487,84 @@ a {
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   color: #252626;
+}
+
+.journeys {
+  text-align: center;
+  margin-top: 50px;
+}
+@media screen and (min-width: 360px) and (max-width: 767px) {
+  .journeys {
+    margin-top: 50px;
+  }
+}
+
+.journey-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+@media screen and (min-width: 360px) and (max-width: 767px) {
+  .journey-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.journey-card {
+  position: relative;
+  height: 290px;
+  width: 300px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+@media screen and (min-width: 360px) and (max-width: 767px) {
+  .journey-card {
+    width: 400px;
+  }
+}
+
+.journey-card::after {
+  content: "";
+  position: absolute;
+  background-color: rgba(100, 150, 255, 0.3);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.journey-card:hover::after {
+  opacity: 1;
+}
+
+.journey-card img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.journey-card span {
+  position: absolute;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  font-family: "Anton", sans-serif;
+  text-transform: uppercase;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.journey-card:hover {
+  transform: translateY(-5px);
 }
 
 * {
