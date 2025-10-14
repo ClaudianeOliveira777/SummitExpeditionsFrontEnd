@@ -3,6 +3,11 @@ $gap-12: 12px;
 $gap-16: 16px;
 $gap-18: 18px;
 $gap-24: 24px;
+$gap-32: 32px;
+$gap-36: 36px;
+
+
+
 
 .mt-8{
     margin-top: $gap-8;
@@ -26,6 +31,19 @@ $gap-24: 24px;
 
 .pt-16{
     padding-top: $gap-16;
+}
+
+.pt-24{
+    padding-top: $gap-24;
+}
+
+.pt-32{
+    padding-top: $gap-32;
+}
+
+
+.pt-36{
+    padding-top: $gap-36;
 }
 
 .pb-16{

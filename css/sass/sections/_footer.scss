@@ -1,0 +1,61 @@
+
+@use '../base/colors' as colors;
+@use '../base/mixin-layout' as mixin;
+
+footer{
+    background: #9eaaa0;
+    margin-top: 10px;
+    padding: 32px;
+    color: colors.$white-snow;
+
+    font-family: 'Montserrat', sans-serif;
+
+   
+
+}
+
+.footer-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    @include mixin.responsive(mobile){
+        display: flex;                // 👈 muda para flex no mobile
+    flex-direction: column;       // um embaixo do outro
+    align-items: center;          // centraliza horizontalmente
+    text-align: center;
+    gap: 24px;                    // espaçamento entre as seções
+
+    // Reordena os blocos
+    > div:nth-child(1) { order: 3; } // logo e endereço por último
+    > div:nth-child(2) { order: 1; } // About primeiro
+    > div:nth-child(3) { order: 2; } // Quick Links depois
+
+
+    }
+}
+
+.footer-logo{
+    width: 200px;
+    padding-bottom: 16px;
+}
+
+.linkfooter{
+    color: colors.$white-snow;
+    display: block;
+
+    padding-top: 20px;
+    transition: color 0.3s ease;
+
+    &:hover{
+        color: colors.$adventure-orange;
+    }
+}
+
+footer h4{
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+footer p {
+    color: colors.$white-snow;
+}

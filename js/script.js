@@ -137,9 +137,10 @@ submenuDesktop.addEventListener('mouseleave', () => {
 
 
 
+//-----------------------------------------
+// 1) Menu Mobile
+//-----------------------------------------
 
-
-// Menu Mobile
 const hamburguer = document.getElementById('hamburguer');
 const navMobile = document.getElementById('nav-mobile');
 const subMenuExpeditions = document.getElementById('expeditions-link');
@@ -168,7 +169,11 @@ subMenuExpeditions.addEventListener('click', (e)=>{
 
 
 
-//Stats - Parallax Effect
+
+// ===============================
+// 2) Stats - Parallax Effect
+// ===============================
+
 const container = document.getElementById('statsContainer');
 const clouds = document.getElementById('statsClouds');
 const statsData = document.querySelector('.stats-data');
@@ -236,3 +241,59 @@ const countUp = new CountUp(counter, target, {
 
 
 document.addEventListener("DOMContentLoaded", initStats);
+
+
+// ===============================
+// 2) Customer
+// ===============================
+function initCustomerSlide(){
+    const customerContainer = document.querySelectorAll('.customer-container');
+    const dots = document.querySelectorAll('.indicator');
+
+    let currentIndex = 0;
+ 
+    const displayCommment = (index) =>{
+      customerContainer.forEach(comment =>
+        comment.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        customerContainer[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentIndex = index;
+    };
+
+
+    const nextComment = () =>{
+      const nextIndex = (currentIndex + 1) % customerContainer.length;
+      displayCommment(nextIndex);
+    };
+
+    // Timer automático
+    setInterval(nextComment, 5000);
+
+    dots.forEach((dot, index) =>{
+      dot.addEventListener('click', () =>{
+        displayCommment(index);
+      });
+    });
+
+    //Teclado
+    document.addEventListener('keydown', (e) =>{
+
+     if(e.key === 'ArrowLeft'){
+      const prevIndex = (currentIndex - 1 + customerContainer.length) % customerContainer.length;
+      displayCommment(prevIndex);
+     } else if
+      (e.key === 'ArrowRight'){
+        nextComment();
+      };
+     });
+
+
+    displayCommment(0);
+    
+    //Cleanup aq (no React pra evitar Memory leak, veja no doc word)
+
+}
+
+document.addEventListener('DOMContentLoaded', initCustomerSlide);
