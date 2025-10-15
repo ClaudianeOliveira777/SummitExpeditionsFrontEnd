@@ -19,16 +19,15 @@ footer{
     grid-template-columns: repeat(3, 1fr);
 
     @include mixin.responsive(mobile){
-        display: flex;                // 👈 muda para flex no mobile
-    flex-direction: column;       // um embaixo do outro
-    align-items: center;          // centraliza horizontalmente
+     grid-template-columns: 1fr;
     text-align: center;
-    gap: 24px;                    // espaçamento entre as seções
+    justify-items: center; // centraliza os blocos no grid
+    gap: 24px;
 
-    // Reordena os blocos
-    > div:nth-child(1) { order: 3; } // logo e endereço por último
-    > div:nth-child(2) { order: 1; } // About primeiro
-    > div:nth-child(3) { order: 2; } // Quick Links depois
+    // Reordena os blocos (1 = primeira linha, etc.)
+    > div:nth-child(1) { grid-row: 3; } // logo e endereço por último
+    > div:nth-child(2) { grid-row: 1; } // About primeiro
+    > div:nth-child(3) { grid-row: 2; } // Quick Links depois
 
 
     }
