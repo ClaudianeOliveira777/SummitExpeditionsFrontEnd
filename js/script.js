@@ -297,3 +297,81 @@ function initCustomerSlide(){
 }
 
 document.addEventListener('DOMContentLoaded', initCustomerSlide);
+
+
+// ===============================
+// Gallery
+// ===============================
+
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getFirestore, doc, setDoc, getDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const db = getFirestore(initializeApp({
+  apiKey: "AIzaSyD9yAnS5rKRHx3s0fswbF6WtYeXA6PZf5k",
+  authDomain: "galeria-likes.firebaseapp.com",
+  projectId: "galeria-likes",
+  storageBucket: "galeria-likes.firebasestorage.app",
+  messagingSenderId: "390622878792",
+  appId: "1:390622878792:web:e304214fcce17a37c94c7d"
+}));
+
+const countCache = new Map();
+
+// Especialista em UI/Atualiza a tela
+function likeDisplay(photoId, likeCount){
+  const targetImg = document.querySelector(`[data-photo-id="${photoId}"]`);
+  const likesCounter = targetImg.querySelector('.likes-counter');
+
+  if(!likesCounter) return;
+
+  likesCounter.textContent = `${likeCount}  like${likeCount !== 1 ? 's' : ''} `;
+  targetImg.classList.toggle('liked', likeCount > 0);
+  countCache.set(photoId, likeCount);
+
+}
+
+  // COORDENA a lógica
+  // 1. Calcula novo valor
+  // 2. Chama o PINTOR: "likeDisplay, atualize a tela!"
+  // 3. Salva no banco
+async function toggleLike(photoId){
+  try{
+    const targetImg = document.querySelector(`[data-photo-id="${photoId}"]`);
+    const currentCount = countCache.get(photoId) || 0;
+    const newCount = targetImg.classList.contains('liked') ?  currentCount - 1 : currentCount + 1;
+
+    likeDisplay(photoId, newCount);
+    await setDoc(doc(db, 'likes', photoId), {count: newCount});
+
+  } catch (error){
+    console.error('Erro ao atualizar like:', error);
+    likeDisplay(photoId, countCache(photoId) || 0);
+                //primeiro para o HTML e o segundo para o cache.
+  }
+}
+
+
+//Carrega os likes reais para o db
+document.addEventListener('DOMContentLoaded', async () =>{
+  const photos = document.querySelectorAll('.photo-item');
+
+  await Promise.all(Array.from(photos).map(async (item) => {
+    const photoId = item.dataset.photoId;
+
+    try{
+      const docSnap = await getDoc(doc(db, 'likes', photoId));
+      likeDisplay(photoId, docSnap.exists() ? docSnap.data().count : 0);
+    } catch (error){
+      console.error(`Erro ao carregar likes para ${photoId}:`, error);
+      likeDisplay(photoId, 0);
+    }
+  }));
+});
+
+window.toggleLike = toggleLike;
+
+// Arrows
+const gallery = document.querySelector('.photo-gallery');
+document.querySelector('.arrow-left').addEventListener('click', () => gallery.scrollBy({left: -320, behavior: 'smooth'}));
+document.querySelector('.arrow-right').addEventListener('click', () => gallery.scrollBy({left: 320, behavior: 'smooth'}));
+

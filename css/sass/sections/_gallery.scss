@@ -1,0 +1,125 @@
+@use '../base/colors' as colors;
+
+
+.gallery-container{
+
+    border: 1px solid green;
+    position: relative;
+    margin-top: 7px;
+    padding: 0 20px;
+   
+}
+
+.gallery-arrow{
+    position: absolute;
+    border: 1px solid rebeccapurple;
+    
+    background: transparent;
+    cursor: pointer;
+
+    z-index: 10;
+    top: 55%;
+    transform: translateY(-50%);
+}
+
+.arrow-left {
+  left: 10px;
+    
+}
+
+.arrow-right {
+    right: 10px;
+}
+
+.photo-gallery{
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.photo-item {
+  flex: 0 0 370px;  //Não estica, não escolhe, tamanho base. Grow, shrink, basis. 
+  height: 370px;
+  width: 370px;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  
+  transition: transform 0.3s ease;
+
+  &:hover{
+    transform: scale(1.05);
+  }
+}
+
+.photo-overlay{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+
+}
+
+.heart-btn{
+  background: none;
+  cursor: pointer;
+  border: none;
+
+
+  transition: all 0.3s ease;
+
+  &:hover{
+    transform: scale(1.1);
+  }
+}
+
+.heart-icon{
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+
+}
+
+ .liked .heart-icon{
+  stroke: #ff4757;
+  fill: #ff4757;
+  animation: heartBeat 0.5s ease-in-out;
+}
+
+
+@keyframes heartBeat{
+  0% {transform: scale(1);}
+  25%{transform: scale(1.2);}
+  50%{transform: scale(1.1);}
+  75%{transform: scale(1.15);}
+  100%{transform: scale(1);}
+}
+
+
+.likes-counter{
+ position: absolute;
+ bottom: -160px;
+ right: -150px;
+ transform: translateY(-50%);
+ background: rgba(0, 0, 0, 0.7);
+ border-radius: 20px;
+ padding: 6px 10px;
+ color: colors.$white-light;
+ font-size: 12px;
+ font-weight: 500;
+
+}
+
+.liked .likes-counter{
+  background: rgba(255, 71, 87, 0.8);
+  border-color: rgba(255, 71, 87, 0.3);
+}
