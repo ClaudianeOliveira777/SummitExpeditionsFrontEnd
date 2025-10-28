@@ -736,6 +736,12 @@ a {
   margin-top: 7px;
   padding: 0 20px;
 }
+@media screen and (min-width: 360px) and (max-width: 767px) {
+  .gallery-container {
+    padding: 0 10px;
+    margin-right: -10px;
+  }
+}
 
 .gallery-arrow {
   position: absolute;
@@ -745,6 +751,11 @@ a {
   z-index: 10;
   top: 55%;
   transform: translateY(-50%);
+}
+@media screen and (min-width: 360px) and (max-width: 767px) {
+  .gallery-arrow {
+    display: none;
+  }
 }
 
 .arrow-left {
@@ -760,6 +771,12 @@ a {
   gap: 20px;
   overflow-x: auto;
   scrollbar-width: none;
+}
+@media screen and (min-width: 360px) and (max-width: 767px) {
+  .photo-gallery {
+    gap: 15px;
+    padding-right: 10px;
+  }
 }
 
 .photo-item {

@@ -1,5 +1,5 @@
 @use '../base/colors' as colors;
-
+@use '../base/mixin-layout' as mixin;
 
 .gallery-container{
 
@@ -7,6 +7,11 @@
     position: relative;
     margin-top: 7px;
     padding: 0 20px;
+
+     @include mixin.responsive(mobile){
+      padding: 0 10px; // ← Reduz padding
+    margin-right: -10px; // ← Faz a "pontinha" aparecer
+    }
    
 }
 
@@ -20,6 +25,10 @@
     z-index: 10;
     top: 55%;
     transform: translateY(-50%);
+
+    @include mixin.responsive(mobile){
+      display: none;
+    }
 }
 
 .arrow-left {
@@ -36,6 +45,11 @@
   gap: 20px;
   overflow-x: auto;
   scrollbar-width: none;
+
+   @include mixin.responsive(mobile){
+      gap: 15px; // ← Reduz gap
+    padding-right: 10px; // ← Cria espaço para a pontinha
+    }
 }
 
 .photo-item {
