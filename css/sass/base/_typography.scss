@@ -78,6 +78,12 @@ p{
 
 a{
    font-family: 'Inter', sans-serif;
+   color: colors.$white-light;
    letter-spacing: 2px;
    text-decoration: none;
+   transition: color 0.3s ease;
+
+   &:hover{
+    color: colors.$adventure-orange  !important;
+   }
 }

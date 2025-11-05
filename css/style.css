@@ -109,8 +109,13 @@ p {
 
 a {
   font-family: "Inter", sans-serif;
+  color: #FBFFF5;
   letter-spacing: 2px;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #FF6B35 !important;
 }
 
 /* ===============================
@@ -224,7 +229,6 @@ a {
 .nav-desktop a {
   font-size: 18px;
   font-weight: 500;
-  color: #FBFFF5;
   margin-right: 20px;
   padding: 10px;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
@@ -241,13 +245,16 @@ a {
 
 .submenuDesktop {
   position: absolute;
-  background-color: aquamarine;
+  background: transparent;
+  border-radius: 5px;
   padding-bottom: 15px;
   display: none;
 }
 .submenuDesktop li {
   list-style: none;
   padding-top: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.95);
+  font-size: 29px;
 }
 
 .submenuDesktop.open {
@@ -255,10 +262,6 @@ a {
   flex-direction: column;
 }
 
-.logo {
-  width: 50px;
-  height: 50px;
-}
 @media screen and (min-width: 360px) and (max-width: 767px) {
   .logo {
     margin: 0 auto;
@@ -271,6 +274,11 @@ a {
     position: relative;
     z-index: 1;
   } */
+}
+
+.logoImg {
+  width: 180px;
+  margin-top: 5px;
 }
 
 /* Botão Hamburguer */
@@ -379,7 +387,6 @@ a {
 
 /*Highlights*/
 .highlights-grid {
-  border: 5px solid green;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: stretch;
@@ -392,7 +399,6 @@ a {
 }
 
 .highlights-card {
-  border: 1px solid red;
   padding: 20px;
   position: relative;
   text-align: center;
@@ -405,7 +411,6 @@ a {
 .highlights-icon {
   width: 60px;
   height: 60px;
-  border: 1px solid bisque;
 }
 
 .highlights-title {

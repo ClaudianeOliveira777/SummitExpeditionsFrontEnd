@@ -9,8 +9,8 @@
     padding: 0 20px;
 
      @include mixin.responsive(mobile){
-      padding: 0 10px; // ← Reduz padding
-    margin-right: -10px; // ← Faz a "pontinha" aparecer
+      padding: 0 10px; 
+      margin-right: -10px; 
     }
    
 }
@@ -47,8 +47,8 @@
   scrollbar-width: none;
 
    @include mixin.responsive(mobile){
-      gap: 15px; // ← Reduz gap
-    padding-right: 10px; // ← Cria espaço para a pontinha
+    gap: 15px; 
+    padding-right: 10px;
     }
 }
 

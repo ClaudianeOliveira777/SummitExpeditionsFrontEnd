@@ -33,6 +33,8 @@ let isAnimating = false;
 //-----------------------------------------
 
 // Função genérica - carrega conteúdo do slide
+// Só PREPARA o slide: coloca imagem, texto
+// Não sabe sobre animação ou troca
 function loadSlide(index, targetSlide){
   const slideData = slides[index];
 
@@ -44,25 +46,26 @@ function loadSlide(index, targetSlide){
   targetSlide.querySelector('.tour-description').textContent = slideData.description;
 }
 
+
 // Função que troca de slide
 function goToSlide(slideDirection){
-  if (isAnimating) return;
-  isAnimating = true;
+  if (isAnimating) return; //Se true, para aqui
+  isAnimating = true; //Se false, muda pra true
 
   // Calcula novo índice (circular com módulo)
   currentSlide = (currentSlide + slideDirection + slides.length) % slides.length;
 
-  // Carrega próximo slide
+  // 1) Carrega próximo slide no background
   loadSlide(currentSlide, inactiveSlide);
 
-  // Alterna as classes 
+  // 2) Alterna as classes 
   activeSlide.classList.remove("active");
   inactiveSlide.classList.add("active");  
 
-  // Troca os papéis de ativo/inativo
+  // 3) Troca os papéis de ativo/inativo
   [activeSlide, inactiveSlide] = [inactiveSlide, activeSlide];
 
-  // Libera transição após a duração da animação CSS
+  //Depois de 1 segundo, volta pra false. //evita varios cliques 
   setTimeout(() => {
     isAnimating = false;
   }, 1000)
@@ -171,7 +174,7 @@ subMenuExpeditions.addEventListener('click', (e)=>{
 
 
 // ===============================
-// 2) Stats - Parallax Effect
+//  Section - Stats - Parallax Effect
 // ===============================
 
 const container = document.getElementById('statsContainer');
@@ -179,14 +182,13 @@ const clouds = document.getElementById('statsClouds');
 const statsData = document.querySelector('.stats-data');
 let onScroll;
 
-// ===============================
-// 2) Init Observer (parallax + counters)
-// ===============================
+
 function initStats(){
  if(!container || !clouds || !statsData) return;
 
  const observerViewport = new IntersectionObserver((elements) => {
   elements.forEach(element =>{
+   
     if(element.isIntersecting){
       
       //Ativa counters
@@ -196,9 +198,9 @@ function initStats(){
       });
 
       //Ativa parallax
-      const onScroll = () => parallaxEffect(container, clouds);
-      window.addEventListener('scroll', onScroll, {passive: true});
-      window.addEventListener('resize', () => parallaxEffect(container, clouds));
+      onScroll = () => parallaxEffect(container, clouds);
+      window.addEventListener('scroll', onScroll);
+      window.addEventListener('resize', onScroll);
       parallaxEffect(container, clouds); 
     } else {
       window.removeEventListener('scroll', onScroll);
@@ -239,8 +241,7 @@ const countUp = new CountUp(counter, target, {
 
 }
 
-
-document.addEventListener("DOMContentLoaded", initStats);
+initStats();
 
 
 // ===============================
@@ -296,7 +297,7 @@ function initCustomerSlide(){
 
 }
 
-document.addEventListener('DOMContentLoaded', initCustomerSlide);
+initCustomerSlide();
 
 
 // ===============================
@@ -326,13 +327,14 @@ function likeDisplay(photoId, likeCount){
 
   likesCounter.textContent = `${likeCount}  like${likeCount !== 1 ? 's' : ''} `;
   targetImg.classList.toggle('liked', likeCount > 0);
-  countCache.set(photoId, likeCount);
+  
+  countCache.set(photoId, likeCount); //os argumentos entram (quando chamam a função likeDisplay() → atualizam a tela → e são guardados no cache.
 
 }
 
   // COORDENA a lógica
   // 1. Calcula novo valor
-  // 2. Chama o PINTOR: "likeDisplay, atualize a tela!"
+  // 2. Chama a UI: "likeDisplay, atualize a tela"
   // 3. Salva no banco
 async function toggleLike(photoId){
   try{
@@ -340,8 +342,8 @@ async function toggleLike(photoId){
     const currentCount = countCache.get(photoId) || 0;
     const newCount = targetImg.classList.contains('liked') ?  currentCount - 1 : currentCount + 1;
 
-    likeDisplay(photoId, newCount);
-    await setDoc(doc(db, 'likes', photoId), {count: newCount});
+    likeDisplay(photoId, newCount); //primeiro manda pra função likeDisplay pra atualizar a UI
+    await setDoc(doc(db, 'likes', photoId), {count: newCount}); //depois salva no banco de dados
 
   } catch (error){
     console.error('Erro ao atualizar like:', error);
@@ -351,24 +353,31 @@ async function toggleLike(photoId){
 }
 
 
+//likeDisplay e toggleLike
+//princípio de separação de responsabilidades. Uma cuida da interface e outra da lógica e persistência.
+
 //Carrega os likes reais para o db
-document.addEventListener('DOMContentLoaded', async () =>{
+async function loadLikes() {
   const photos = document.querySelectorAll('.photo-item');
 
   await Promise.all(Array.from(photos).map(async (item) => {
+    
     const photoId = item.dataset.photoId;
 
-    try{
+    try {
       const docSnap = await getDoc(doc(db, 'likes', photoId));
       likeDisplay(photoId, docSnap.exists() ? docSnap.data().count : 0);
-    } catch (error){
+    } catch (error) {
       console.error(`Erro ao carregar likes para ${photoId}:`, error);
       likeDisplay(photoId, 0);
     }
   }));
-});
+}
+
+loadLikes();
 
 window.toggleLike = toggleLike;
+
 
 // Arrows
 const gallery = document.querySelector('.photo-gallery');
